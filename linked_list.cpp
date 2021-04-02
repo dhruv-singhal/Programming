@@ -68,6 +68,30 @@ void insertAfter(Node* prev_node,int new_data)
     prev_node->next = new_node;
 }
 
+void delete_Node(Node** head_ref, int key)
+{
+    Node* head = *head_ref;
+    Node* prev = NULL;
+    Node* temp = head->next;
+
+    if(head->data==key)
+    {
+        *head_ref = head->next;
+        return;
+    }
+
+    while(temp->next != NULL)
+    {   
+        if(temp->data==key)
+        {
+            head->next = temp->next;
+            return;
+        }
+        head= head->next;
+        temp= temp->next;
+    }
+
+}
 
 
 int main()
@@ -103,6 +127,11 @@ int main()
     insertAfter(head->next, 6);
     append2(head,7);
     print_list(head);
+
+    cout<<"Delete 5"<<endl;
+    delete_Node(&head, 5);
+    print_list(head);
+
 
     return 0;
 
